@@ -7,4 +7,3 @@ npm-debug.log*
 dist/
 build/
 public/uploads/*
-public/photos/*

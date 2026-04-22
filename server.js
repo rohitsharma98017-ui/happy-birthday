@@ -122,8 +122,15 @@ app.delete('/api/wishes/:id', (req, res) => {
 // Get list of photos
 app.get('/api/photos', (req, res) => {
   try {
-    // Return empty array - photos would need to be stored in external service
-    res.json([]);
+    const fs = require('fs');
+    const photosDir = path.join(__dirname, 'public/photos');
+    if (!fs.existsSync(photosDir)) {
+      return res.json([]);
+    }
+    const photos = fs.readdirSync(photosDir)
+      .filter(file => /\.(jpg|jpeg|png|gif|webp)$/i.test(file))
+      .map(file => `/photos/${file}`);
+    res.json(photos);
   } catch (error) {
     console.error('Error getting photos:', error);
     res.status(500).json({ error: 'Failed to get photos' });
