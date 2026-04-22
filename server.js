@@ -8,10 +8,22 @@ const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Set request timeout for Vercel
+app.set('timeout', 30000);
+
 // Middleware
 app.use(cors());
-app.use(bodyParser.json());
-app.use(express.static('public'));
+app.use(bodyParser.json({ limit: '50mb' }));
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
+app.use(express.static('public', {
+  maxAge: '1d',
+  etag: false
+}));
+
+// Handle favicon requests
+app.get('/favicon.ico', (req, res) => {
+  res.status(204).end();
+});
 
 // Setup multer for file uploads
 const upload = multer({ dest: 'public/uploads/' });
@@ -316,8 +328,23 @@ app.get('/admin', (req, res) => {
 });
 
 // Start server
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
   console.log(`🎉 Birthday Wishes Server running at http://localhost:${PORT}`);
   console.log(`📱 Visit http://localhost:${PORT} for the main page`);
   console.log(`⚙️  Visit http://localhost:${PORT}/admin for customization`);
+});
+
+// Error handling
+server.on('error', (err) => {
+  console.error('Server error:', err);
+  process.exit(1);
+});
+
+// Graceful shutdown
+process.on('SIGTERM', () => {
+  console.log('SIGTERM signal received: closing HTTP server');
+  server.close(() => {
+    console.log('HTTP server closed');
+    process.exit(0);
+  });
 });
