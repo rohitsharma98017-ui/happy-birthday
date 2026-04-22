@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Birthday Wishes</title>
+    <link rel="stylesheet" href="admin-styles.css">
+</head>
+<body>
+    <div class="admin-container">
+        <header class="admin-header">
+            <h1>🎨 Admin Panel</h1>
+            <p>Customize your birthday wishes website</p>
+            <a href="/" class="btn-back">← Back to Website</a>
+        </header>
+
+        <div class="admin-content">
+            <!-- Configuration Section -->
+            <section class="admin-section">
+                <h2>⚙️ Basic Settings</h2>
+                <form id="configForm" class="admin-form">
+                    <div class="form-group">
+                        <label for="girlfriendName">Girlfriend's Name</label>
+                        <input 
+                            type="text" 
+                            id="girlfriendName" 
+                            placeholder="e.g., Sarah"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="birthdayDate">Birthday Date</label>
+                        <input 
+                            type="date" 
+                            id="birthdayDate"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="mainMessage">Main Birthday Message</label>
+                        <input 
+                            type="text" 
+                            id="mainMessage" 
+                            placeholder="e.g., Happy Birthday to my beautiful girlfriend!"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subheading">Secondary Message</label>
+                        <input 
+                            type="text" 
+                            id="subheading" 
+                            placeholder="e.g., A special day for a special person"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="personalMessage">Personal Message</label>
+                        <textarea 
+                            id="personalMessage" 
+                            placeholder="Write a personal message for her..."
+                            rows="6"
+                        ></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">💾 Save Settings</button>
+                </form>
+            </section>
+
+            <!-- Theme Customization -->
+            <section class="admin-section">
+                <h2>🎨 Theme Colors</h2>
+                <form id="themeForm" class="admin-form">
+                    <div class="theme-grid">
+                        <div class="form-group">
+                            <label for="primaryColor">Primary Color</label>
+                            <div class="color-input-wrapper">
+                                <input 
+                                    type="color" 
+                                    id="primaryColor"
+                                    value="#ff69b4"
+                                >
+                                <span id="primaryColorHex">#ff69b4</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="secondaryColor">Secondary Color</label>
+                            <div class="color-input-wrapper">
+                                <input 
+                                    type="color" 
+                                    id="secondaryColor"
+                                    value="#ff1493"
+                                >
+                                <span id="secondaryColorHex">#ff1493</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="backgroundColor">Background Color</label>
+                            <div class="color-input-wrapper">
+                                <input 
+                                    type="color" 
+                                    id="backgroundColor"
+                                    value="#fff5f8"
+                                >
+                                <span id="backgroundColorHex">#fff5f8</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="textColor">Text Color</label>
+                            <div class="color-input-wrapper">
+                                <input 
+                                    type="color" 
+                                    id="textColor"
+                                    value="#333333"
+                                >
+                                <span id="textColorHex">#333333</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">🎨 Save Theme</button>
+                </form>
+            </section>
+
+            <!-- Music Management -->
+            <section class="admin-section">
+                <h2>🎵 Music for Different Pages</h2>
+                
+                <!-- Page 1 & 3 Music -->
+                <div class="music-section">
+                    <h3>🎂 Happy Birthday Page (Pages 1 & 3)</h3>
+                    <div class="music-upload">
+                        <form id="musicForm1" class="upload-form" data-page="1">
+                            <input 
+                                type="file" 
+                                id="musicInput1" 
+                                accept="audio/*"
+                                required
+                            >
+                            <button type="submit" class="btn btn-primary">🎶 Upload Music for Page 1</button>
+                        </form>
+                        <p class="info">Upload "Happy Birthday" song for pages 1 & 3</p>
+                    </div>
+                    <div class="music-list" id="musicList1">
+                        <p class="loading">Loading music...</p>
+                    </div>
+                </div>
+
+                <!-- Page 2 Music -->
+                <div class="music-section">
+                    <h3>📸 Photos Page (Page 2)</h3>
+                    <div class="music-upload">
+                        <form id="musicForm2" class="upload-form" data-page="2">
+                            <input 
+                                type="file" 
+                                id="musicInput2" 
+                                accept="audio/*"
+                                required
+                            >
+                            <button type="submit" class="btn btn-primary">🎶 Upload Music for Page 2</button>
+                        </form>
+                        <p class="info">Upload music for the photos/memories page</p>
+                    </div>
+                    <div class="music-list" id="musicList2">
+                        <p class="loading">Loading music...</p>
+                    </div>
+                </div>
+
+                <!-- Page 4 Music -->
+                <div class="music-section">
+                    <h3>🍰 Cake Cutting Page (Page 4)</h3>
+                    <div class="music-upload">
+                        <form id="musicForm4" class="upload-form" data-page="4">
+                            <input 
+                                type="file" 
+                                id="musicInput4" 
+                                accept="audio/*"
+                                required
+                            >
+                            <button type="submit" class="btn btn-primary">🎶 Upload Music for Page 4</button>
+                        </form>
+                        <p class="info">Upload "Happy Birthday To You" song for cake cutting page</p>
+                    </div>
+                    <div class="music-list" id="musicList4">
+                        <p class="loading">Loading music...</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Photo Management -->
+            <section class="admin-section">
+                <h2>📸 Photo Gallery</h2>
+                <div class="photo-upload">
+                    <form id="photoForm" class="upload-form">
+                        <input 
+                            type="file" 
+                            id="photoInput" 
+                            accept="image/*"
+                            required
+                        >
+                        <button type="submit" class="btn btn-primary">📤 Upload Photo</button>
+                    </form>
+                    <p class="info">Supported formats: JPG, PNG, GIF, WebP (Max: 5MB)</p>
+                </div>
+
+                <div class="photos-list" id="photosList">
+                    <p class="loading">Loading photos...</p>
+                </div>
+            </section>
+
+            <!-- Wishes Management -->
+            <section class="admin-section">
+                <h2>💝 Manage Wishes</h2>
+                <div class="wishes-list" id="adminWishesList">
+                    <p class="loading">Loading wishes...</p>
+                </div>
+            </section>
+        </div>
+
+        <footer class="admin-footer">
+            <p>⚡ All changes are saved instantly on the main page</p>
+        </footer>
+    </div>
+
+    <script src="admin-script.js"></script>
+</body>
+</html>

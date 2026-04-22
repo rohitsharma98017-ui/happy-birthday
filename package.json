@@ -1,0 +1,19 @@
+{
+  "name": "birthday-wishes",
+  "version": "1.0.0",
+  "description": "A customizable birthday wishes website for your girlfriend",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": ["birthday", "wishes", "website"],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "multer": "^1.4.5-lts.1",
+    "cors": "^2.8.5",
+    "body-parser": "^1.20.2"
+  }
+}

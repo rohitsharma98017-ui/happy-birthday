@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday! 🎉</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Background Music -->
+    <audio id="bgMusic" loop>
+        <source src="/music/happy-birthday-page.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Page-specific music -->
+    <audio id="photoPageMusic" loop>
+        <source src="/music/photos-page.mp3" type="audio/mpeg">
+    </audio>
+
+    <audio id="cakePageMusic" loop>
+        <source src="/music/happy-birthday-to-you.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Click Sound Effects -->
+    <audio id="clickSound" preload="auto">
+        <source src="data:audio/wav;base64,UklGRiYAAABXQVZFZm10IBAAAAABAAEAQB8AAABhAQACABAAZgB9ACcAAAABAAEARKwAAIhYAQACABAAZgB9ACcAAAABAAEARKwAAA==" type="audio/wav">
+    </audio>
+
+    <!-- Knife Cut Sound -->
+    <audio id="cutSound" preload="auto">
+        <source src="data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAAB9AAACABAAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj==" type="audio/wav">
+    </audio>
+
+    <!-- Portal Opening Animation Screen -->
+    <div class="portal-screen" id="portalScreen">
+        <div class="portal-wrapper">
+            <div class="portal-ring outer-ring"></div>
+            <div class="portal-ring middle-ring"></div>
+            <div class="portal-ring inner-ring"></div>
+            <div class="portal-core"></div>
+            <p class="portal-text">Click to open</p>
+        </div>
+    </div>
+
+    <!-- Confetti Animation -->
+    <div class="confetti-container" id="confettiContainer"></div>
+
+    <!-- Main Container with Multiple Pages -->
+    <div class="container main-content" style="opacity: 0;">
+        
+        <!-- PAGE 1: HOME -->
+        <div class="page active" id="page1">
+            <!-- Header Section -->
+            <header class="header">
+                <div class="header-content">
+                    <h1 id="mainMessage" class="main-title">Happy Birthday!</h1>
+                    <p id="subheading" class="subheading">A special day for a special person</p>
+                    <p id="girlfriendName" class="girlfriend-name">Loading...</p>
+                </div>
+            </header>
+
+            <!-- Countdown Timer -->
+            <section class="countdown-section">
+                <h2>Countdown to Birthday</h2>
+                <div class="countdown" id="countdown">
+                    <div class="countdown-item">
+                        <span id="days" class="countdown-value">0</span>
+                        <span class="countdown-label">Days</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span id="hours" class="countdown-value">0</span>
+                        <span class="countdown-label">Hours</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span id="minutes" class="countdown-value">0</span>
+                        <span class="countdown-label">Minutes</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span id="seconds" class="countdown-value">0</span>
+                        <span class="countdown-label">Seconds</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Personal Message Section -->
+            <section class="personal-message-section">
+                <div class="personal-message-card">
+                    <h2>💌 A Message for You</h2>
+                    <div id="personalMessage" class="message-content">
+                        Loading personal message...
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- PAGE 2: GALLERY -->
+        <div class="page" id="page2">
+            <section class="gallery-section">
+                <h2>📸 Our Special Moments</h2>
+                
+                <!-- Top 3 Featured Photos -->
+                <div class="featured-photos">
+                    <div class="gallery-grid" id="featuredGalleryGrid" style="grid-template-columns: repeat(3, 1fr);">
+                        <p class="loading">Loading photos...</p>
+                    </div>
+                </div>
+
+                <!-- Full Gallery -->
+                <h3 style="text-align: center; margin-top: 40px; margin-bottom: 20px;">📷 All Photos</h3>
+                <div class="gallery-grid" id="galleryGrid">
+                    <p class="loading">No photos yet. Check back soon! ✨</p>
+                </div>
+            </section>
+        </div>
+
+        <!-- PAGE 3: WISHES -->
+        <div class="page" id="page3">
+            <section class="wishes-section">
+                <h2>💝 Birthday Wishes & Messages</h2>
+                
+                <!-- Add Wish Form -->
+                <div class="wish-form-container">
+                    <form id="wishForm" class="wish-form">
+                        <input 
+                            type="text" 
+                            id="wishName" 
+                            placeholder="Your Name" 
+                            required
+                            maxlength="50"
+                        >
+                        <textarea 
+                            id="wishMessage" 
+                            placeholder="Write your birthday wish..." 
+                            required
+                            maxlength="500"
+                            rows="4"
+                        ></textarea>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="anonymous">
+                            Post as Anonymous
+                        </label>
+                        <button type="submit" class="btn btn-submit">Send Wish 🎉</button>
+                    </form>
+                </div>
+
+                <!-- Wishes Display -->
+                <div class="wishes-container" id="wishesContainer">
+                    <p class="loading">No wishes yet. Be the first to send one! 🌟</p>
+                </div>
+            </section>
+        </div>
+
+        <!-- PAGE 4: BIRTHDAY CAKE -->
+        <div class="page" id="page4">
+            <section class="cake-section">
+                <div class="cake-container">
+                    <!-- Special Message for Sanchita -->
+                    <div class="sanchita-message">
+                        <p class="first-slice-text">✨ The first slice is for you, Sanchita! ✨</p>
+                    </div>
+
+                    <!-- Animated Birthday Cake -->
+                    <div class="cake-wrapper">
+                        <div class="cake" id="mainCake">
+                            <div class="candles">
+                                <div class="candle"></div>
+                                <div class="candle"></div>
+                                <div class="candle"></div>
+                                <div class="candle"></div>
+                                <div class="candle"></div>
+                            </div>
+                            <div class="cake-layers">
+                                <div class="cake-layer layer1"></div>
+                                <div class="cake-layer layer2"></div>
+                                <div class="cake-layer layer3"></div>
+                            </div>
+                        </div>
+
+                            <!-- Cake Slice -->
+                        <div class="cake-slice" id="cakeSlice"></div>
+                    </div>
+
+                    <!-- Cake Cutting Animation -->
+                    <div class="knife-container">
+                        <div class="knife"></div>
+                    </div>
+
+                    <!-- Decorations -->
+                    <div class="celebration">
+                        <div class="balloon balloon1"></div>
+                        <div class="balloon balloon2"></div>
+                        <div class="balloon balloon3"></div>
+                        <div class="balloon balloon4"></div>
+                        <div class="balloon balloon5"></div>
+                    </div>
+
+                    <!-- Slice Destination for Sanchita -->
+                    <div class="slice-destination" id="sliceDestination">
+                        <div class="destination-text">For Sanchita 💝</div>
+                    </div>
+
+                    <!-- Text -->
+                    <div class="cake-text">
+                        <h2 id="cakeMessage">🎂 Happy Birthday! 🎂</h2>
+                        <p>Make a wish and cut the cake!</p>
+                    </div>
+
+                    <!-- Cut Button -->
+                    <button class="cake-cut-btn" onclick="cutCake()">🔪 Cut the Cake</button>
+
+                    <!-- Star effects container -->
+                    <div class="stars-container" id="starsContainer"></div>
+
+                    <!-- Spark effects container -->
+                    <div class="sparks-container" id="sparksContainer"></div>
+                </div>
+            </section>
+        </div>
+
+        <!-- PAGE NAVIGATION -->
+        <div class="page-navigation">
+            <button class="nav-btn nav-prev" id="prevBtn" onclick="previousPage()">← Previous</button>
+            <div class="page-indicators">
+                <span class="page-dot active" onclick="goToPage(1)"></span>
+                <span class="page-dot" onclick="goToPage(2)"></span>
+                <span class="page-dot" onclick="goToPage(3)"></span>
+                <span class="page-dot" onclick="goToPage(4)"></span>
+            </div>
+            <button class="nav-btn nav-next" id="nextBtn" onclick="nextPage()">Next →</button>
+        </div>
+
+        <!-- Music Control -->
+        <div class="music-control">
+            <button id="musicToggle" class="btn-music">🔊 Music On</button>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Made with ❤️ for your special day</p>
+        </footer>
+    </div>
+
+    <!-- Modal for full photo view -->
+    <div id="photoModal" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="modalImage">
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
